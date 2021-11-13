@@ -1,9 +1,14 @@
 async function get_data_mall_available_lots() {
     let data_mall_info = []
     let carpark_rates = await get_mall_carpark_rates()
-    let url = "php_api/datamall_api.php"
-    await axios.get(url)
+    let url = "http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailabilityv2"
+    await axios.get(url,{
+        headers: {
+          "AccountKey": "xiel9A8oTo6vilri+6ukrQ=="
+        }
+    })
     .then (response => {
+        console.log(response.data)
         for (const carpark of response.data) {
             if (carpark.Area.length > 1) {
                 let location = carpark.Location.split(" ").reverse()
