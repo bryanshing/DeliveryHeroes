@@ -14,7 +14,8 @@ const weather = Vue.createApp({
             toady: "",
             area_weather: "",
             search_results_arr: [],
-            attribution: ""
+            attribution: "",
+            attribute_modal: false
         }
     },
 
@@ -130,12 +131,10 @@ const weather = Vue.createApp({
             }
         },
         show_modal() {
-            let modal = document.getElementById("attribute_modal")
-            if (modal.style.display === "none") {
-              modal.style.display = "block"
-            }
-            else{
-              modal.style.display = "none"
+            if (this.attribute_modal ==false){
+                this.attribute_modal= true
+            }else{
+                this.attribute_modal = false
             }
         },
         api_attribute(){

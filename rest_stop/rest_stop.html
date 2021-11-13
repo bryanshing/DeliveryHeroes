@@ -55,23 +55,27 @@
 
     <div id="vue_app">
       <!-- Share Rest Stop -->
-      <div class="container mx-auto px-2 pb-8 pt-3 shareSection h-auto rounded-lg">
-        <h2 class="text-center text-2xl text-white md:text-3xl p-5 pb-0">
-          Know a rest spot or have one to share?  
-        </h2>
-
-        <!--Create Rest Stop Button-->
-        <div class="mt-0 text-center flex flex-row justify-center">
-
-          <button @click="cancel_create_rest_stop()" 
-            class="shareButton flex flex-wrap content-center rounded-md mt-2 border border-transparent 
-            shadow-sm px-4 py-2 text-base font-medium text-black mx-auto 
-            focus:outline-none sm:w-auto sm:text-sm" 
-            type="submit">
-            Share Rest Stops
-          </button>
+      <div class="mx-2">
+        <div class="container mx-auto px-2 pb-8 pt-3 shareSection h-auto rounded-lg ">
+          <h2 class="text-center text-2xl text-white md:text-3xl p-5 pb-0">
+            Know a rest spot or have one to share?  
+          </h2>
+  
+          <!--Create Rest Stop Button-->
+          <div class="mt-0 text-center flex flex-row justify-center">
+  
+            <button @click="cancel_create_rest_stop()" 
+              class="shareButton flex flex-wrap content-center rounded-md mt-2 border border-transparent 
+              shadow-sm px-4 py-2 text-base font-medium text-black mx-auto 
+              focus:outline-none sm:w-auto sm:text-sm" 
+              type="submit">
+              Share Rest Stops
+            </button>
+          </div>  
         </div>  
-      </div>  
+
+      </div>
+      
 
       <h2 class="text-xl md:text-2xl mx-10 md:mx-auto pt-8 text-center"> Enter your address and/or filter by preferences to find a place nearby to rest!</h2>
       
@@ -172,11 +176,11 @@
 
               <ol class="mt-2 mb-5 inline-flex">
                 <li v-for='offer in rest_stop.reststop_offers'> 
-                  <template v-show="offer == 'Smoking Area'" class="fas fa-smoking mr-2" style ="color: green; font-size: 30px;"></template>
-                  <template v-show="offer == 'Smoking Ban'" class="fas fa-smoking-ban mr-2" style ="color: red; font-size: 30px;"></template>
-                  <template v-show="offer == 'Refreshments'" class="fas fa-utensils mr-2" style="font-size: 30px;"></template>
-                  <template v-show="offer == 'Sitting Area'" class="fas fa-chair mr-2" style="font-size: 30px;"></template>
-                  <template v-show="offer == 'First Aid'" class="fas fa-first-aid mr-2 " style ="color: red; font-size: 30px;"></template>
+                  <template v-show="offer == 'Smoking Area'" class="fas fa-smoking mr-2" style ="color: green; font-size: 20px;"></template>
+                  <template v-show="offer == 'Smoking Ban'" class="fas fa-smoking-ban mr-2" style ="color: red; font-size: 20px;"></template>
+                  <template v-show="offer == 'Refreshments'" class="fas fa-utensils mr-2" style="font-size: 20px;"></template>
+                  <template v-show="offer == 'Sitting Area'" class="fas fa-chair mr-2" style="font-size: 20px;"></template>
+                  <template v-show="offer == 'First Aid'" class="fas fa-first-aid mr-2 " style ="color: red; font-size: 20px;"></template>
                 </li>
               </ol>
 
@@ -212,13 +216,13 @@
 
               </div>
 
-              <ol class="mb-5 inline-flex">
+              <ol class="mt-2 mb-5 inline-flex">
                 <li v-for='offer in rest_stop.reststop_offers'> 
-                  <template v-show="offer == 'Smoking Area'" class="fas fa-smoking mr-2" style ="color: green;"></template>
-                  <template v-show="offer == 'Smoking Ban'" class="fas fa-smoking-ban  mr-2" style ="color: red;"></template>
-                  <template v-show="offer == 'Refreshments'" class="fas fa-utensils  mr-2" ></template>
-                  <template v-show="offer == 'Sitting Area'" class="fas fa-chair mr-2"></template>
-                  <template v-show="offer == 'First Aid'" class="fas fa-first-aid mr-2 " style ="color: red;"></template>
+                  <template v-show="offer == 'Smoking Area'" class="fas fa-smoking mr-2" style ="color: green; font-size: 20px;"></template>
+                  <template v-show="offer == 'Smoking Ban'" class="fas fa-smoking-ban mr-2" style ="color: red; font-size: 20px;"></template>
+                  <template v-show="offer == 'Refreshments'" class="fas fa-utensils mr-2" style="font-size: 20px;"></template>
+                  <template v-show="offer == 'Sitting Area'" class="fas fa-chair mr-2" style="font-size: 20px;"></template>
+                  <template v-show="offer == 'First Aid'" class="fas fa-first-aid mr-2 " style ="color: red; font-size: 20px;"></template>
                 </li>
               </ol>
 
@@ -252,13 +256,13 @@
 
               </div>
 
-              <ol class="mb-5 inline-flex">
+              <ol class="mt-2 mb-5 inline-flex">
                 <li v-for='offer in rest_stop.reststop_offers'> 
-                  <template v-show="offer == 'Smoking Area'" class="fas fa-smoking mr-2" style ="color: green;"></template>
-                  <template v-show="offer == 'Smoking Ban'" class="fas fa-smoking-ban  mr-2" style ="color: red;"></template>
-                  <template v-show="offer == 'Refreshments'" class="fas fa-utensils  mr-2" ></template>
-                  <template v-show="offer == 'Sitting Area'" class="fas fa-chair mr-2"></template>
-                  <template v-show="offer == 'First Aid'" class="fas fa-first-aid mr-2 " style ="color: red;"></template>
+                  <template v-show="offer == 'Smoking Area'" class="fas fa-smoking mr-2" style ="color: green; font-size: 20px;"></template>
+                  <template v-show="offer == 'Smoking Ban'" class="fas fa-smoking-ban mr-2" style ="color: red; font-size: 20px;"></template>
+                  <template v-show="offer == 'Refreshments'" class="fas fa-utensils mr-2" style="font-size: 20px;"></template>
+                  <template v-show="offer == 'Sitting Area'" class="fas fa-chair mr-2" style="font-size: 20px;"></template>
+                  <template v-show="offer == 'First Aid'" class="fas fa-first-aid mr-2 " style ="color: red; font-size: 20px;"></template>
                 </li>
               </ol>
 

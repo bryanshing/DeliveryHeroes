@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
 <?php
 
 // DataMall APIs
@@ -27,3 +32,6 @@ echo($new_data);
 
 
 ?>
+
+</body>
+</html>
