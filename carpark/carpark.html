@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet">
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
+
+        <!-- Load the `mapbox-gl-geocoder` plugin. -->
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
+        <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+
+        <!-- Load 'tiles mapbox' -->
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css' rel='stylesheet' />
+
+        <!-- Tailwind CSS -->
+        <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+
+        <!-- Axios-->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <!-- Vue.js 3 CDN -->
+        <script src="https://unpkg.com/vue@next"></script>
+
+        <!-- Geolocation -->
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5oxsjzSESPZWswCpmcNVszfc1-SC5eKs"
+            async defer>
+        </script>
+        
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script> 
+        
+        <!-- This is the API from Firebase Realtime Database -->
+        <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script> 
+        
+        <!-- external CSS -->
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="carpark.css">
+  
+    </head>
+
+    <body onload="api_attribute()">
+        <!-- Navigation Bar  -->     
+        <div id="navbar">
+          <navigation-bar main_link="../main.html" reststop_link="../rest_stop/rest_stop.html" is_carpark="pointer-events:none;color: #EE6F56;border-bottom:2px #EE6F56 solid;font-weight: bold;"></navigation-bar>
+        </div>
+
+        <!-- Landing Page -->
+        <div class="flex flex-col md:flex-row gap-0 lg:gap-14 place-content-center items-center">
+          <iframe class="h-40 md:h-64" src="https://embed.lottiefiles.com/animation/75972"></iframe>
+          <h2 class="text-xl px-14 pb-4 text-center md:text-4xl md:text-left">
+            <br> Look for available parking lots <br> just by doing a simple search!
+          </h2>
+        </div>  
+        
+        <div class="mt-4 w-11/12 mx-auto">
+          <div class="text-gray-900 font-bold"> Lots available: </div>
+          <div class="flex flex-row gap-x-4">
+            <div class="text-green-700 font-bold text-sm"> More than 50 </div>
+            <div class="text-gray-400"> | </div>
+            <div class="text-yellow-500 font-bold text-sm"> Less than 50 </div>
+            <div class="text-gray-400"> | </div>
+            <div class="text-red-500 font-bold text-sm"> Less than 20 </div>
+          </div>
+        </div>
+
+        <div class="w-11/12 mt-4 mx-auto text-xs">
+          <button class="text-black text-xs font-medium underline text-left" id="open-btn" onclick="show_modal()">
+            View API Attribution Here
+          </button>
+        </div>
+
+        <div style="display: none;" id="attribute_modal" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+          <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-52 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+        
+            <!-- This element is to trick the browser into centering the modal contents. -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <div class="inline-block align-bottom bg-white rounded-lg text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+              <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                  <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                      API Attribution
+                    </h3>
+                    <div class="mt-2">
+                      <p class="text-sm text-gray-500 pr-5 overflow-auto" id="attribution">
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button onclick="show_modal()" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 shareButton text-base font-medium text-black sm:ml-3 sm:w-auto sm:text-sm">
+                  Okay
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex h-screen relative overall-scroll mx-auto w-11/12">
+            <div class="md:w-5/12 xl:w-1/4 md:static w-full absolute top-3/4 left-0">
+              <div id="sidebar">
+              </div>
+              <div class="carparks h-screen overflow-scroll custom-scroll">
+              </div>       
+            </div>
+
+            <div id="map" class="flex flex-grow w-auto h-3/4 md:h-screen z-0"></div>
+            <div id="geocoder" class="geocoder z-10"></div>
+        </div>
+
+        <script src="carpark.js"></script> 
+        <script src="../navbar.js"></script>
+    </body>
+</html>

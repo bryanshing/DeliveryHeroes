@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Storing HDB Data</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script> 
+  <!-- This is the API from Firebase Realtime Database -->
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script> 
+
+</head>
+<body>
+  <script>
+    async function get_data_gov_carpark_name() {
+      let url = "https://data.gov.sg/api/action/datastore_search?resource_id=139a3035-e624-4f56-b63f-89ae28d4ae4c&limit=2164"
+      let response = await axios.get(url)
+      return Promise.resolve(response.data.result.records)
+    }
+    // returns a list of objects that has all information of each carpark
+
+
+    async function convert_svy_to_wgs(x,y) {
+      let coordinates = []
+      url = `https://developers.onemap.sg/commonapi/convert/3414to4326?X=${x}&Y=${y}`
+      await axios.get(url)
+      .then (response => {
+          coordinates.push(response.data.longitude)
+          coordinates.push(response.data.latitude)
+      })
+      .catch(error => {
+          console.log(error.message)
+      })
+      return Promise.resolve(coordinates)
+    }
+
+
+    async function convert_coor_in_data_gov() {
+      let all_hdb_carparks = []
+      let carpark_data = await get_data_gov_carpark_name()
+      for (const carpark of carpark_data) {
+        let coordinates = await convert_svy_to_wgs(parseFloat(carpark.x_coord),parseFloat(carpark.y_coord))
+        carpark.coordinates = coordinates
+        let name = ""
+        for (word of carpark.address.split(" ")){
+            name += word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() + " "
+        }
+        carpark.address = name
+        all_hdb_carparks.push(carpark)
+      }
+      return all_hdb_carparks
+    }
+    // store results from convert_coor_in_data_gov() into firebase
+    // call firebase here & make it async
+    // then use await convert_coor_in_data_gov() to call function
+
+
+    // Firebase connecting for all HDB carparks
+    const firebaseConfig = {
+            apiKey: "AIzaSyCv55Nudy8CCXpWds9NDmYyC5J4vcbeOV0",
+            authDomain: "deliveryheroes-wad2.firebaseapp.com",
+            databaseURL: "https://deliveryheroes-wad2-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "deliveryheroes-wad2",
+            storageBucket: "deliveryheroes-wad2.appspot.com",
+            messagingSenderId: "487402659992",
+            appId: "1:487402659992:web:97475744455e661ec2b0ed",
+            measurementId: "G-5BRXTY0D7C"
+        };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+
+    async function load_carpark_data_into_firebase() {
+      //console.log("==== running load_carpark_data_into_firebase =====")
+      let carpark_data = await convert_coor_in_data_gov()
+      //continue the rest
+      //console.log(carpark_data);
+
+      var full_database_CARPARKS_HDB = firebase.database().ref('fullDB_Carparks');
+
+      firebase.database().ref('fullDB_Carparks').set({
+          data: carpark_data
+          
+      }, function(error) {
+          if (error) {
+              console.log("== storing ALL HDB carpark info failed!!! ===");
+          } else {
+              console.log("== storing ALL HDB carpark info SUCCESS!!! ===");
+          }
+      });
+  
+    }
+
+    // load_carpark_data_into_firebase()
+
+
+    async function extract_CarparkHDB_firebase() {
+      //console.log("==== running extract_CarparkHDB_firebase START =====")
+
+      var full_database_CARPARKS_HDB = firebase.database().ref('fullDB_Carparks');
+
+      full_database_CARPARKS_HDB.once('value').then((snapshot) => {
+                                if(snapshot.exists()) {
+                                  //console.log(snapshot.val());
+                                  return snapshot.val();
+                                }
+                                else {
+                                    console.log('The HDB carparks extraction failed :(');
+                                }
+                            });
+  
+    }
+    
+  </script>
+</body>
+</html>
