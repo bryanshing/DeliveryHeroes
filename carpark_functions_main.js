@@ -1,38 +1,37 @@
 async function get_data_mall_available_lots() {
     let data_mall_info = []
     let carpark_rates = await get_mall_carpark_rates()
-    let url = "https://cors-anywhere.herokuapp.com/http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailabilityv2"
-    let response = await axios.get(url,{
-        headers: {
-          "AccountKey": "xiel9A8oTo6vilri+6ukrQ=="
+    let url = "php_api/datamall_api.php"
+    await axios.get(url)
+    .then (response => {
+        for (const carpark of response.data) {
+            if (carpark.Area.length > 1) {
+                let location = carpark.Location.split(" ").reverse()
+                let new_carpark = {"type": "Feature",
+                                    "geometry":{
+                                        "type": "Point",
+                                        "coordinates": [parseFloat(location[0]),parseFloat(location[1])]
+                                    },
+                                    "properties": {
+                                        "CarParkID": carpark.CarParkID,
+                                        "Name": carpark.Development,
+                                        "AvailableLots": carpark.AvailableLots,
+                                    },
+                                }
+                for (const rate of carpark_rates) {
+                    if (rate.carpark.split(' ').join("").toLowerCase() == carpark.Development.split(' ').join("").toLowerCase() || (rate.carpark.toLowerCase()).includes(carpark.Development.toLowerCase()) || (carpark.Development.toLowerCase()).includes(rate.carpark.toLowerCase()) || (carpark.Development.toLowerCase()).includes(rate.carpark.split(' ').join("").toLowerCase())) {
+                        new_carpark["properties"]['saturday_rate'] = rate.saturday_rate
+                        new_carpark["properties"]['sunday_publicholiday_rate'] = rate.sunday_publicholiday_rate
+                        new_carpark["properties"]["weekdays_rate_1"] = rate.weekdays_rate_1
+                    }
+                }
+                data_mall_info.push(new_carpark)
+            }
         }
     })
-    let carpark_data = await response.data.value
-    console.log(carpark_data)
-    for (const carpark of carpark_data) {
-        if (carpark.Area.length > 1) {
-            let location = carpark.Location.split(" ").reverse()
-            let new_carpark = {"type": "Feature",
-                                "geometry":{
-                                    "type": "Point",
-                                    "coordinates": [parseFloat(location[0]),parseFloat(location[1])]
-                                },
-                                "properties": {
-                                    "CarParkID": carpark.CarParkID,
-                                    "Name": carpark.Development,
-                                    "AvailableLots": carpark.AvailableLots,
-                                },
-                            }
-            for (const rate of carpark_rates) {
-                if (rate.carpark.split(' ').join("").toLowerCase() == carpark.Development.split(' ').join("").toLowerCase() || (rate.carpark.toLowerCase()).includes(carpark.Development.toLowerCase()) || (carpark.Development.toLowerCase()).includes(rate.carpark.toLowerCase()) || (carpark.Development.toLowerCase()).includes(rate.carpark.split(' ').join("").toLowerCase())) {
-                    new_carpark["properties"]['saturday_rate'] = rate.saturday_rate
-                    new_carpark["properties"]['sunday_publicholiday_rate'] = rate.sunday_publicholiday_rate
-                    new_carpark["properties"]["weekdays_rate_1"] = rate.weekdays_rate_1
-                }
-            }
-            data_mall_info.push(new_carpark)
-        }
-    }
+    .catch(error => {
+        console.log(error.message)
+    })
     return Promise.resolve(data_mall_info)
 }
 

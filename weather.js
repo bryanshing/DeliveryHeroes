@@ -21,7 +21,7 @@ const weather = Vue.createApp({
 
     created: async function() {
         //console.log("=== calling API and storing into Vue instance 'weather' ===");
-
+        this.api_attribute()
         let tzoffset = (new Date()).getTimezoneOffset() * 60000;
         let localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1).split('.')[0].replace(/:/g, '%3A');
 
@@ -78,10 +78,26 @@ const weather = Vue.createApp({
                 //console.log(sessionStorage.getItem("all_carpark_time"))
             },1000)
         }
-        this.api_attribute()
     },
 
     methods: {
+        show_modal() {
+            if (this.attribute_modal ==false){
+                this.attribute_modal= true
+            }else{
+                this.attribute_modal = false
+            }
+        },
+        api_attribute(){
+            var today = new Date();
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var dd = String(today.getDate());
+            var mm = String(monthNames[today.getMonth()]);
+            var yyyy = String(today.getFullYear());
+      
+            today = dd + ' ' + mm + ' ' + yyyy;
+            this.attribution = `Contains information from 2-hour Weather Forecast API accessed on ${today} from DataGov, NEA which is made available under \n the terms of the Singapore Open Data Licence version 1.0 https://data.gov.sg/open-data-licence`
+        },
         getForecast(){
             //console.log("===== getForecast() START ======");
             for (const key in this.forecastData) {
@@ -130,23 +146,7 @@ const weather = Vue.createApp({
             return [curtop];
             }
         },
-        show_modal() {
-            if (this.attribute_modal ==false){
-                this.attribute_modal= true
-            }else{
-                this.attribute_modal = false
-            }
-        },
-        api_attribute(){
-            var today = new Date();
-            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            var dd = String(today.getDate());
-            var mm = String(monthNames[today.getMonth()]);
-            var yyyy = String(today.getFullYear());
-      
-            today = dd + ' ' + mm + ' ' + yyyy;
-            this.attribution = `Contains information from 2-hour Weather Forecast API accessed on ${today} from DataGov, NEA which is made available under \n the terms of the Singapore Open Data Licence version 1.0 https://data.gov.sg/open-data-licence`
-        }
+        
     }
 })
 

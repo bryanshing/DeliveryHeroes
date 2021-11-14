@@ -56,7 +56,7 @@
             </p>
             <!--Attribution-->
             <div class="w-11/12 mb-3 mx-auto text-xs">
-              <button class="text-black text-xs font-medium underline text-center" id="open-btn" @click="show_modal">
+              <button class="text-white text-xs font-medium underline text-center" id="open-btn" @click="show_modal">
                 View API Attribution Here
               </button>
             </div>
@@ -121,9 +121,6 @@
               :forecast = "returnForecast">
               </weather-animation>
             </div>
-
-            <div v-show="returnForecast.length > 0" id="attribution" class="text-xs" v-html="attribution"> </div>
-            
         </div>
        
     </div>

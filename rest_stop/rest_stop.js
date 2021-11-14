@@ -30,6 +30,7 @@ let app = Vue.createApp({
 
     created: async function(){
         // Firebase connecting messages
+        this.api_attribute()
         const firebaseConfig = {
             apiKey: "AIzaSyCv55Nudy8CCXpWds9NDmYyC5J4vcbeOV0",
             authDomain: "deliveryheroes-wad2.firebaseapp.com",
@@ -94,7 +95,6 @@ let app = Vue.createApp({
                 }
             }.bind(this),1000)
         }
-        this.api_attribute()
     },
 
 
