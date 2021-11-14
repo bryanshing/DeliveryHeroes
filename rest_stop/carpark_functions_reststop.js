@@ -4,10 +4,14 @@ async function get_data_mall_available_lots() {
     let url = "https://thingproxy.freeboard.io/fetch/http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailabilityv2"
     let response = await axios.get(url,{
         headers: {
-          "AccountKey": "xiel9A8oTo6vilri+6ukrQ=="
+          "AccountKey": "xiel9A8oTo6vilri+6ukrQ==",
+          "Access-Control-Allow-Origin": "https://main.d373wj2l1r89qe.amplifyapp.com",
+          "Access-Control-Allow-Methods": "POST",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization"
         }
     })
     let carpark_data = await response.data.value
+    console.log(carpark_data)
     for (const carpark of carpark_data) {
         if (carpark.Area.length > 1) {
             let location = carpark.Location.split(" ").reverse()
