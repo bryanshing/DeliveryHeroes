@@ -164,7 +164,7 @@ weather.component('weather-animation', {
 
     computed: {
         imageGIF(){
-            console.log("==== imageGIF running=====");
+            //console.log("==== imageGIF running=====");
             if (this.forecast.includes('Cloudy')){
                 return "https://assets3.lottiefiles.com/packages/lf20_1eaisi3u.json";
             } else if (this.forecast.includes('Thundery')){
@@ -176,7 +176,7 @@ weather.component('weather-animation', {
         },
 
         warningText(){
-            console.log("==== warningText Running =====");
+            //console.log("==== warningText Running =====");
 
             if (this.forecast.includes('Cloudy')){
                 return "Cloudy weather! You will be fine. Stay safe and ride safely!";

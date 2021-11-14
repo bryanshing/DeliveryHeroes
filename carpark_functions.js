@@ -1,7 +1,7 @@
 async function get_data_mall_available_lots() {
     let data_mall_info = []
     let carpark_rates = await get_mall_carpark_rates()
-    let url = "php_api/datamall_api.php"
+    let url = "/php_api/datamall_api.php"
     await axios.get(url)
     .then (response => {
         for (const carpark of response.data) {

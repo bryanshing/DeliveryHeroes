@@ -59,7 +59,7 @@ const encourage = Vue.createApp({
 
     methods: {
         newMessage(){
-            console.log("==== newMessage() START =====");
+            //console.log("==== newMessage() START =====");
 
             var newMessageObj = {name: this.newuser, message: this.inputmessage, image: this.image_url};
             // var check = newMessageObj == "" || newMessageObj.message == ""

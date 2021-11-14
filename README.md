@@ -22,49 +22,60 @@ can create new rest stops to feature them on our platform for delivery riders to
 
 <img width="815" alt="Screenshot 2021-11-13 at 19 03 38" src="https://user-images.githubusercontent.com/89132892/141626666-2161e3a6-e60c-4d3a-9bb2-fed007fe6555.png">
 
+Figma Link: 
+
 ## 🤓 How to Install and Run Our Web Application (for Developers) ##
-### Installation 
+### Installation ###
 Kindly download the following applications
 - GitHub Desktop (https://desktop.github.com/) 
 - MAMP/WAMP server
 - Visual Studio Code (VS Code)
 
-### Steps to run our Web Application
+### Steps to run our Web Application ###
 1. Click on the "Code" green button
 2. Under HTTPS, copy the URL that starts with https://
 <img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/code-button.png">
 
 4. Log into your GitHub account using GitHub Desktop 
 5. Go to the top left corner and under Current Repository, click Add button -> Clone respository
-6. Go to URL tab and paste the URL link copeid previously.
-7. Under local path, store the file directly under localhost (C:\wamp64\www). The file will be named as "is216-project-group27"
-8. Click "Clone"
-9. Copy all the content of the file directly under localhost. 
+<img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/clone%20in%20github.png">
+
+7. Go to URL tab and paste the URL link copeid previously.
+8. Windows/WAMP: Under local path, store the file directly under localhost (C:\wamp64\www). The file will be named as "is216-project-group27". <br/> Mac/MAMP: Store file under localhost (/Applications/MAMP/htdocs)
+9. Click "Clone"
+<img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/clone_repository.png">
 10. Open Google Chrome and key in "localhost/index.html" into the search bar. 
 11. Click on "Open in Visual Studio Code" to open the source code in VS Code
 
-* Feel free to use diagrams and images to describe.
 
-## 🤓 Features of Delivery Heros (How to Use Our Web Application)
-### Delivery Riders
+## 🤓 Features of Delivery Heros (How to Use Our Web Application) ##
+### Delivery Riders :motorcycle: ###
 
-#### Home Page
+#### Home Page ####
 * Check 2-hour weather forecast 
-* Read appreication messages from the general public 
+<img width="315" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/weather-sample.JPG">
 
-#### Carparks
+* Read appreication messages from the general public 
+<img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/message-sample.JPG">
+
+#### Carparks ####
 * Search for nearby carpark by allowing access to current location or searching the location you are going to 
 * Check the carpark prices (shopping malls) and grace period (hdb)
+<img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/map-sample.JPG">
 
-#### Rest Stops 
+#### Rest Stops ####
 * Find rest stops near your area 
 * Search the location using the search bar
 * Filter the location according to your preferences 
+<img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/rest_stop-sample.JPG">
 
-### General Public 
+### General Public :family_woman_woman_boy_boy: ###
 
-#### Home Page
+#### Home Page ####
 * Post encouragin messages to the delivery riders
+<img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/share-msg-sample.png">
 
-#### Rest Stops
+#### Rest Stops ####
 * Post any rest stops you found for the delivery riders to rest and take a break
+<img width="415" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/share-reststop-sample.png">
+
