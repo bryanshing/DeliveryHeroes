@@ -20,9 +20,9 @@ The DeliveryHeroes platform will allow food delivery riders to check on availabl
 For the general public, they are also able to use this DeliveryHeroes platform to share encouraging messages and stories in their interactions with delivery riders, and keep their morale high. Furthermore, those that would like to contribute in creating a rest stop
 can create new rest stops to feature them on our platform for delivery riders to use.
 
-<img width="815" alt="Screenshot 2021-11-13 at 19 03 38" src="https://user-images.githubusercontent.com/89132892/141626666-2161e3a6-e60c-4d3a-9bb2-fed007fe6555.png">
+<img width="815" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/api_to_webapp.png">
 
-Figma Link: 
+Figma Link: https://www.figma.com/file/0JwRO0VZAqyBnoRNJl1Tp6/delivery-heroes?node-id=0%3A1
 
 ## 🤓 How to Install and Run Our Web Application (for Developers) ##
 ### Installation ###
@@ -32,23 +32,19 @@ Kindly download the following applications
 - Visual Studio Code (VS Code)
 
 ### Steps to run our Web Application ###
-1. Click on the "Code" green button
-2. Under HTTPS, copy the URL that starts with https://
+1. Click on the "Code" green drop down button
 <img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/code-button.png">
+2. Click on Download ZIP
+<img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/download_zip.png">
+3. Open the ZIP file <br/>
+4. Open the "is216-project-group27-main" folder, you should see this!
+<img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/folder_contents.png">
+5. Copy and paste all 15 items into your web root folder <br/>
+Windows/WAMP: (C:\wamp64\www) <br/>
+Mac/MAMP: (/Applications/MAMP/htdocs) <br/>
+6. Open Google Chrome and key in "localhost/index.html" into the search bar.
 
-4. Log into your GitHub account using GitHub Desktop 
-5. Go to the top left corner and under Current Repository, click Add button -> Clone respository
-<img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/clone%20in%20github.png">
-
-7. Go to URL tab and paste the URL link copeid previously.
-8. Windows/WAMP: Under local path, store the file directly under localhost (C:\wamp64\www). The file will be named as "is216-project-group27". <br/> Mac/MAMP: Store file under localhost (/Applications/MAMP/htdocs)
-9. Click "Clone"
-<img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/clone_repository.png">
-10. Open Google Chrome and key in "localhost/index.html" into the search bar. 
-11. Click on "Open in Visual Studio Code" to open the source code in VS Code
-
-
-## 🤓 Features of Delivery Heros (How to Use Our Web Application) ##
+## 🤓 Features of Delivery Heroes (How to Use Our Web Application) ##
 ### Delivery Riders :motorcycle: ###
 
 #### Home Page ####

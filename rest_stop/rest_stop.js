@@ -8,6 +8,7 @@ let app = Vue.createApp({
             rest_stop_name: "",
             address: "",
             post_code: "",
+            post_code_invalid: "",
             desc: "",
             offers: [],
             long: 0,
@@ -20,10 +21,10 @@ let app = Vue.createApp({
             filtered: false,
             rsname_error:false,
             rsadd_error: false,
-            rspost_error: false,
             rsimage_error: false,
             rsdesc_error: false,
             rsoffers_error: false,
+            create_button: false,
             attribution: ""
         }
     },
@@ -185,7 +186,8 @@ let app = Vue.createApp({
 
         newRestStop(){
             //console.log("==== newRestStop() START =====");
-
+            this.create_button = true
+            this.check_postal_code()
             var checker= false
             if (this.rest_stop_name == ''){
                 this.rsname_error = true
@@ -200,12 +202,6 @@ let app = Vue.createApp({
             }
             else{
                 this.rsadd_error = false
-            }
-            if (this.post_code == ''){
-                this.rspost_error = true
-            }
-            else{
-                this.rspost_error = false
             }
             if (this.desc == ''){
                 this.rsdesc_error = true
@@ -385,6 +381,21 @@ let app = Vue.createApp({
             }
         },
 
+        check_postal_code(){
+            if (this.create_button) {
+                if (isNaN(Number(this.post_code)) || this.post_code.length !== 6) {
+                    if (this.post_code.length !== 0) {
+                        this.post_code_invalid = "Postal Code is invalid!"      
+                    }
+                    else{
+                        this.post_code_invalid = "Postal Code is empty!"
+                    }
+                }
+                else{
+                    this.post_code_invalid = ""
+                }   
+            }
+        },
 
         // upload image function
         UploadAndReturnURL(){

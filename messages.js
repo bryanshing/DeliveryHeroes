@@ -17,7 +17,6 @@ const encourage = Vue.createApp({
     },
 
     created: function() {
-
         // Firebase connecting messages
         const firebaseConfig = {
             apiKey: "AIzaSyCv55Nudy8CCXpWds9NDmYyC5J4vcbeOV0",
@@ -37,9 +36,11 @@ const encourage = Vue.createApp({
         // PULLING DATA FROM FIREBASE
         all_messages.once('value').then((snapshot) => {
             if(snapshot.exists()) {
-              this.messages_list = snapshot.val();
-              //console.log(this.messages_list);
-            //   console.log(JSON.parse(JSON.stringify(this.messages_list)).length);
+                for (let i = Object.keys(snapshot.val()).length; i > 0; i--) {
+                    let message = "m" + i
+                    this.messages_list.push(snapshot.val()[message])
+                }
+                //console.log(JSON.parse(JSON.stringify(this.messages_list)))
             }
             else {
                 console.log('The read failed');
@@ -117,9 +118,11 @@ const encourage = Vue.createApp({
                         // update the list to reflect new input
                             all_messages.once('value').then((snapshot) => {
                                 if(snapshot.exists()) {
-                                    this.messages_list = snapshot.val();
-                                // console.log(this.messages_list);
-                                // console.log(JSON.stringify(this.messages_list));
+                                    this.messages_list = []
+                                    for (let i = Object.keys(snapshot.val()).length; i > 0; i--) {
+                                        let message = "m" + i
+                                        this.messages_list.push(snapshot.val()[message])
+                                    }
                                 }
                                 else {
                                     console.log('The read failed');

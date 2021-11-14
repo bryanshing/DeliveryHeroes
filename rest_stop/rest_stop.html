@@ -36,7 +36,7 @@
     <!-- Tailwind Form Plugin -->
     <link href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.css" rel="stylesheet"/>
 
-    <title>DeliveryHeroes - Carpark</title>
+    <title>DeliveryHeroes - Rest Stops</title>
 </head>
 <body>
 
@@ -362,9 +362,9 @@
                             autocomplete="postal-code" 
                             class="mt-1 py-2 px-1 border border-gray-500 focus:outline-none focus:ring-2 focus:ring-green-800 focus:border-transparent
                             block w-full shadow-sm sm:text-sm rounded-md" 
-                            v-model="post_code">
-
-                            <p v-show="rspost_error && post_code.length === 0" class ="text-red-500">Postal Code is empty!</p>
+                            v-model="post_code" @keyup="check_postal_code()">
+                            
+                            <p class ="text-red-500">{{post_code_invalid}}</p>
                       </div>
 
                       <br>
