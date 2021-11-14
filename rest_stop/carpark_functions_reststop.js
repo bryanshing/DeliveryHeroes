@@ -5,8 +5,8 @@ async function get_data_mall_available_lots() {
     let response = await axios.get(url,{
         headers: {
           "AccountKey": "xiel9A8oTo6vilri+6ukrQ==",
-          "Access-Control-Allow-Origin": "https://main.d373wj2l1r89qe.amplifyapp.com",
-          "Access-Control-Allow-Methods": "POST",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type, Authorization"
         }
     })
