@@ -314,70 +314,66 @@ let app = Vue.createApp({
         select(coordinates) {
             window.open(`http://www.google.com/maps/place/${String(coordinates[1])},${String(coordinates[0])}`, '_blank')
         },
+        
         check_filter(){
             this.filter_results = []
             if (this.filter_check.length !== 0) {
-                for (const item of this.filter_check) {
-                    if (this.sorted_data.length !== 0) {
-                        for (const reststop in JSON.parse(JSON.stringify(this.sorted_data))) {
-                            if (JSON.parse(JSON.stringify(this.sorted_data[reststop]['reststop_offers'])).includes(item)) {
-                                let check_repeat = false
-                                for (const filter_item of this.filter_results) {
-                                    if (JSON.stringify(filter_item) == JSON.stringify(this.sorted_data[reststop])) {
-                                        check_repeat = true
-                                    }
-                                }
-                                if (check_repeat == false) {
-                                    this.filter_results.push(JSON.parse(JSON.stringify(this.sorted_data[reststop])))
-                                }
+                if (this.sorted_data.length !== 0) {
+                    for (const reststop in JSON.parse(JSON.stringify(this.sorted_data))) {
+                        let check_offers = true
+                        for (const filter_offer of this.filter_check) {
+                            if (! JSON.parse(JSON.stringify(this.sorted_data[reststop]['reststop_offers'])).includes(filter_offer)) {
+                                check_offers = false
                             }
                         }
-                        //sort
-                        let data = this.filter_results
-            
-                        const options = { units: "kilometers" }
-                        var new_data = JSON.parse(JSON.stringify(data))
-                        new_data = Object.values(new_data)
-            
-            
-                        new_data.forEach(date => {
-                            var curr = JSON.parse(JSON.stringify(this.current_coord))
-                            Object.defineProperty(date, "distance", {
-                                value: turf.distance(curr,date.geometry, options),
-                                writable: true,
-                                enumerable: true,
-                                configurable: true,
-                            });
-                        });
-                        
-                        new_data.sort(function (a, b) {
-                            if (a.distance > b.distance) {
-                                return 1;
-                            }
-                            if (a.distance < b.distance) {
-                                return -1;
-                            }
-                            return 0; // a must be equal to b
-                        });
-            
-                        this.filter_results = new_data
+                        if (check_offers) {
+                            this.filter_results.push(JSON.parse(JSON.stringify(this.sorted_data[reststop])))
+                        }
                     }
-                    else{
-                        for (const reststop in JSON.parse(JSON.stringify(this.all_rest_stops))) {
-                            if (JSON.parse(JSON.stringify(this.all_rest_stops[reststop]['reststop_offers'])).includes(item)) {
-                                let check_repeat = false
-                                for (const filter_item of this.filter_results) {
-                                    if (JSON.stringify(filter_item) == JSON.stringify(this.all_rest_stops[reststop])) {
-                                        check_repeat = true
-                                    }
-                                }
-                                if (check_repeat == false) {
-                                    this.filter_results.push(JSON.parse(JSON.stringify(this.all_rest_stops[reststop])))
-                                }
+                    //sort
+                    let data = this.filter_results
+        
+                    const options = { units: "kilometers" }
+                    var new_data = JSON.parse(JSON.stringify(data))
+                    new_data = Object.values(new_data)
+        
+        
+                    new_data.forEach(date => {
+                        var curr = JSON.parse(JSON.stringify(this.current_coord))
+                        Object.defineProperty(date, "distance", {
+                            value: turf.distance(curr,date.geometry, options),
+                            writable: true,
+                            enumerable: true,
+                            configurable: true,
+                        });
+                    });
+                    
+                    new_data.sort(function (a, b) {
+                        if (a.distance > b.distance) {
+                            return 1;
+                        }
+                        if (a.distance < b.distance) {
+                            return -1;
+                        }
+                        return 0; // a must be equal to b
+                    });
+        
+                    this.filter_results = new_data
+                }
+                else{
+                    for (const reststop in JSON.parse(JSON.stringify(this.all_rest_stops))) {
+                        let check_offers = true
+                        for (const filter_offer of this.filter_check) {
+                            if (! JSON.parse(JSON.stringify(this.all_rest_stops[reststop]['reststop_offers'])).includes(filter_offer)) {
+                                check_offers = false
                             }
+                        }
+                        if (check_offers) {
+                            this.filter_results.push(JSON.parse(JSON.stringify(this.all_rest_stops[reststop])))
                         }
                     }
                 }
+                
                 this.sorted = false
                 this.filtered = true
             }

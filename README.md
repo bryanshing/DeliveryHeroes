@@ -1,7 +1,7 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=453547&assignment_repo_type=GroupAssignmentRepo)
 # :wave: is216-project
 
-## 🤓 IS216 - YOUR GROUP NUMBER - DELIVERYHEROES
+## 🤓 IS216 - 27 - DELIVERYHEROES
 | Name        | SMU Email  Address |  
 | ----------- | -----------        |
 | Bryan Shing Wen Yan      | bryan.shing.2020@scis.smu.edu.sg |
@@ -12,9 +12,6 @@
 
 
 ## 🤓 Project Overview ##
-* Describe your project. What is it called? What does it do? Why did you make this web application? Who will benefit from using your web application? Describe your users - who are they? (anyone? or specific target age group or gender? region? country?)
-* Feel free to use diagrams and images to describe. For example, if you have a system architecture diagram, please place it here and describe it. If you have a business process diagram, you can also place it here and describe it.
-
 DeliveryHeroes is a web application built to serve all food delivery riders in Singapore. Ever since COVID-19 started, there has been a surge in demand for food deliveries due to the strict dine-in restrictions, and thus also a derived increase in demand for food delivery riders. 
 As such, there has been an increase in the number of reports of abuse from customers towards these unsung heroes. However, there are also reports of various acts of kindness by the general pubic towards these delivery riders, such as setting up rest stops in various community locations for riders to take a breather. As such, our team thought that creating this web application would serve as a platform to aid these delivery riders in their work. 
 
@@ -25,34 +22,49 @@ can create new rest stops to feature them on our platform for delivery riders to
 
 <img width="815" alt="Screenshot 2021-11-13 at 19 03 38" src="https://user-images.githubusercontent.com/89132892/141626666-2161e3a6-e60c-4d3a-9bb2-fed007fe6555.png">
 
-
-
-
 ## 🤓 How to Install and Run Our Web Application (for Developers) ##
-* If a new developer were to have access to your IS216 project GitHub repo (and subsequently your source code files) and replicate your development environment on his development laptop computer, what are the steps he should take?
-* What does he needs to install on his development laptop computer? How can he download your project files and run it on his own computer?
-* Provide a step-by-step description of how to get the development environment running. You can choose to do so for at least 1 Operating System (Windows 10 or Mac OS).
+### Installation 
+Kindly download the following applications
+- GitHub Desktop (https://desktop.github.com/) 
+- MAMP/WAMP server
+- Visual Studio Code (VS Code)
+
+### Steps to run our Web Application
+1. Click on the "Code" green button
+2. Under HTTPS, copy the URL that starts with https://
+<img width="515" src="https://github.com/is216-supreme/is216-project-group27/blob/main/images/code-button.png">
+
+4. Log into your GitHub account using GitHub Desktop 
+5. Go to the top left corner and under Current Repository, click Add button -> Clone respository
+6. Go to URL tab and paste the URL link copeid previously.
+7. Under local path, store the file directly under localhost (C:\wamp64\www). The file will be named as "is216-project-group27"
+8. Click "Clone"
+9. Copy all the content of the file directly under localhost. 
+10. Open Google Chrome and key in "localhost/index.html" into the search bar. 
+11. Click on "Open in Visual Studio Code" to open the source code in VS Code
+
 * Feel free to use diagrams and images to describe.
 
+## 🤓 Features of Delivery Heros (How to Use Our Web Application)
+### Delivery Riders
 
-## 🤓 [OPTIONAL] How to Deploy Our Web Application (for Developers) ##
-* As an optional X-factor, did your group deploy your web application to cloud? (e.g. AWS, GCP, Azure, Heroku, Digital Ocean, or similar) If so, provide a step-by-step description of how a developer can deploy your web application
-* Feel free to use diagrams and images to describe.
+#### Home Page
+* Check 2-hour weather forecast 
+* Read appreication messages from the general public 
 
+#### Carparks
+* Search for nearby carpark by allowing access to current location or searching the location you are going to 
+* Check the carpark prices (shopping malls) and grace period (hdb)
 
-## 🤓 How to Use Our Web Application (for Visitors to our Website) ##
-* Yay! Your website is READY for visitors!
-* Provide a step-by-step description of what the user/visitor can/should do upon visiting your website for the first time.
-* It would be wonderful if you could include **screenshot images** of web pages to demonsrate what the user/visitor can/should do.
+#### Rest Stops 
+* Find rest stops near your area 
+* Search the location using the search bar
+* Filter the location according to your preferences 
 
+### General Public 
 
-## 🤓 Other Things ##
-* FEEL FREE to **add more things** into this **README**
+#### Home Page
+* Post encouragin messages to the delivery riders
 
-
-## 🤓 Useful Resources ##
-* [**Markdown** Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
-* [**GOOD** README Example 1](https://github.com/testing-library/cypress-testing-library)
-* [**GOOD** README Example 2](https://github.com/typeorm/typeorm)
-* [**GOOD** README Example 3](https://github.com/amark/gun)
-* [**GOOD** README Example 4](https://github.com/google/leveldb)
+#### Rest Stops
+* Post any rest stops you found for the delivery riders to rest and take a break
